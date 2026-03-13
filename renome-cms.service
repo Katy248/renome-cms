@@ -1,0 +1,15 @@
+[Unit]
+Description=Renome CMS
+After=network.target
+
+[Service]
+Type=simple
+User=yourusername
+WorkingDirectory=/root/renome-cms
+ExecStart=/usr/bin/npm run dev
+Restart=on-failure
+RestartSec=10
+Environment=NODE_ENV=development
+
+[Install]
+WantedBy=multi-user.target
