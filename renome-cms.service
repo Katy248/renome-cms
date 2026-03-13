@@ -4,7 +4,6 @@ After=network.target
 
 [Service]
 Type=simple
-User=yourusername
 WorkingDirectory=/root/renome-cms
 ExecStart=/root/renome-cms/scripts/run-dev.sh
 Restart=on-failure
