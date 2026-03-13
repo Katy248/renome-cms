@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quick_prices",
+  "info": {
+    "singularName": "quick-price",
+    "pluralName": "quick-prices",
+    "displayName": "quick-price"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal",
+      "min": 1
+    }
+  }
+}

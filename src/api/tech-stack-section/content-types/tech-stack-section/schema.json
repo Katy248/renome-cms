@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "tech_stack_sections",
+  "info": {
+    "singularName": "tech-stack-section",
+    "pluralName": "tech-stack-sections",
+    "displayName": "tech-stack-section"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "text"
+    }
+  }
+}

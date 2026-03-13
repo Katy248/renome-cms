@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recomendations",
+  "info": {
+    "singularName": "recomendation",
+    "pluralName": "recomendations",
+    "displayName": "recomendation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "author": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}
