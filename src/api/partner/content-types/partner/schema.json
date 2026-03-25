@@ -37,6 +37,12 @@
     },
     "tarifDescription": {
       "type": "string"
+    },
+    "abilities": {
+      "type": "text"
+    },
+    "abilities2": {
+      "type": "text"
     }
   }
 }

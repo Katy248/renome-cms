@@ -1,0 +1,63 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_infos",
+  "info": {
+    "singularName": "site-info",
+    "pluralName": "site-infos",
+    "displayName": "site-info"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "address": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "companyAddress": {
+      "type": "string"
+    },
+    "companyInn": {
+      "type": "string"
+    },
+    "companyKpp": {
+      "type": "string"
+    },
+    "companyOgrn": {
+      "type": "string"
+    },
+    "companyOkved": {
+      "type": "text"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "logoWithText": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "links": {
+      "type": "component",
+      "component": "links.social-link",
+      "repeatable": true
+    }
+  }
+}

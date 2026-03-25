@@ -24,6 +24,10 @@
     },
     "anotation": {
       "type": "string"
+    },
+    "isPriceFrom": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

@@ -630,6 +630,8 @@ export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    abilities: Schema.Attribute.Text;
+    abilities2: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -702,6 +704,7 @@ export interface ApiPricePrice extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    isPriceFrom: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::price.price'> &
       Schema.Attribute.Private;
@@ -852,6 +855,45 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSiteInfoSiteInfo extends Struct.SingleTypeSchema {
+  collectionName: 'site_infos';
+  info: {
+    displayName: 'site-info';
+    pluralName: 'site-infos';
+    singularName: 'site-info';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.String;
+    companyAddress: Schema.Attribute.String;
+    companyInn: Schema.Attribute.String;
+    companyKpp: Schema.Attribute.String;
+    companyName: Schema.Attribute.String;
+    companyOgrn: Schema.Attribute.String;
+    companyOkved: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    links: Schema.Attribute.Component<'links.social-link', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::site-info.site-info'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files'>;
+    logoWithText: Schema.Attribute.Media<'images' | 'files'>;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
   collectionName: 'team_members';
   info: {
@@ -898,6 +940,7 @@ export interface ApiTechStackSectionTechStackSection
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1435,6 +1478,7 @@ declare module '@strapi/strapi' {
       'api::quick-price.quick-price': ApiQuickPriceQuickPrice;
       'api::recomendation.recomendation': ApiRecomendationRecomendation;
       'api::service.service': ApiServiceService;
+      'api::site-info.site-info': ApiSiteInfoSiteInfo;
       'api::team-member.team-member': ApiTeamMemberTeamMember;
       'api::tech-stack-section.tech-stack-section': ApiTechStackSectionTechStackSection;
       'plugin::content-releases.release': PluginContentReleasesRelease;
