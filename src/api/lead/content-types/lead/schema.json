@@ -12,16 +12,19 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "phone": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "comment": {
       "type": "text"
     },
     "personalDataConfirmation": {
-      "type": "boolean"
+      "type": "boolean",
+      "required": true
     }
   }
 }

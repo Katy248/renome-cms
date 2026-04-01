@@ -4,7 +4,7 @@
   "info": {
     "singularName": "price-category",
     "pluralName": "price-categories",
-    "displayName": "price-category"
+    "displayName": "Категория цен"
   },
   "options": {
     "draftAndPublish": true
@@ -17,10 +17,12 @@
       "target": "api::price.price"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "longName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "application",
     "pluralName": "applications",
-    "displayName": "application"
+    "displayName": "Приложение"
   },
   "options": {
     "draftAndPublish": true
@@ -12,20 +12,24 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "screenshot": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "files"
       ]
+    },
+    "url": {
+      "type": "string"
     }
   }
 }

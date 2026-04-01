@@ -433,7 +433,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
   collectionName: 'applications';
   info: {
-    displayName: 'application';
+    displayName: '\u041F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u0435';
     pluralName: 'applications';
     singularName: 'application';
   };
@@ -444,18 +444,114 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::application.application'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    screenshot: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
+    screenshot: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
+  collectionName: 'authors';
+  info: {
+    displayName: '\u0410\u0432\u0442\u043E\u0440';
+    pluralName: 'authors';
+    singularName: 'author';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    avatar: Schema.Attribute.Media<'images' | 'files'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    firstName: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::author.author'
+    > &
+      Schema.Attribute.Private;
+    publikacziya_v_bloges: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-post.blog-post'
     >;
+    publishedAt: Schema.Attribute.DateTime;
+    surname: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
+  collectionName: 'blog_posts';
+  info: {
+    displayName: '\u041F\u0443\u0431\u043B\u0438\u043A\u0430\u0446\u0438\u044F \u0432 \u0431\u043B\u043E\u0433\u0435';
+    pluralName: 'blog-posts';
+    singularName: 'blog-post';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-post.blog-post'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ApiBlogSectionBlogSection extends Struct.SingleTypeSchema {
+  collectionName: 'blog_sections';
+  info: {
+    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F "\u0411\u043B\u043E\u0433"';
+    pluralName: 'blog-sections';
+    singularName: 'blog-section';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-section.blog-section'
+    > &
+      Schema.Attribute.Private;
+    posts: Schema.Attribute.Relation<'oneToMany', 'api::blog-post.blog-post'>;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -466,7 +562,7 @@ export interface ApiCompanySectionCompanySection
   extends Struct.SingleTypeSchema {
   collectionName: 'company_sections';
   info: {
-    displayName: 'company-section';
+    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F "\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"';
     pluralName: 'company-sections';
     singularName: 'company-section';
   };
@@ -477,7 +573,7 @@ export interface ApiCompanySectionCompanySection
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -485,6 +581,9 @@ export interface ApiCompanySectionCompanySection
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -494,23 +593,18 @@ export interface ApiCompanySectionCompanySection
 export interface ApiHeroSectionHeroSection extends Struct.SingleTypeSchema {
   collectionName: 'hero_sections';
   info: {
-    displayName: 'hero-section';
+    displayName: 'Hero-\u0441\u0435\u043A\u0446\u0438\u044F';
     pluralName: 'hero-sections';
     singularName: 'hero-section';
   };
   options: {
     draftAndPublish: true;
   };
-  pluginOptions: {
-    i18n: {
-      localized: false;
-    };
-  };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -518,7 +612,7 @@ export interface ApiHeroSectionHeroSection extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -528,7 +622,7 @@ export interface ApiHeroSectionHeroSection extends Struct.SingleTypeSchema {
 export interface ApiIntegrationIntegration extends Struct.CollectionTypeSchema {
   collectionName: 'integrations';
   info: {
-    displayName: 'integration';
+    displayName: '\u0418\u043D\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u044F';
     pluralName: 'integrations';
     singularName: 'integration';
   };
@@ -545,8 +639,9 @@ export interface ApiIntegrationIntegration extends Struct.CollectionTypeSchema {
       'api::integration.integration'
     > &
       Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    name: Schema.Attribute.String;
+    logo: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -572,9 +667,10 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::lead.lead'> &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    personalDataConfirmation: Schema.Attribute.Boolean;
-    phone: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    personalDataConfirmation: Schema.Attribute.Boolean &
+      Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -586,7 +682,7 @@ export interface ApiPartnerTarifPartnerTarif
   extends Struct.CollectionTypeSchema {
   collectionName: 'partner_tarifs';
   info: {
-    displayName: 'partner-tarif';
+    displayName: '\u0422\u0430\u0440\u0438\u0444 \u043F\u0430\u0440\u0442\u043D\u0451\u0440\u0430';
     pluralName: 'partner-tarifs';
     singularName: 'partner-tarif';
   };
@@ -604,8 +700,9 @@ export interface ApiPartnerTarifPartnerTarif
       'api::partner-tarif.partner-tarif'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     price: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
           min: 1;
@@ -622,7 +719,7 @@ export interface ApiPartnerTarifPartnerTarif
 export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
   collectionName: 'partners';
   info: {
-    displayName: 'partner';
+    displayName: '\u041F\u0430\u0440\u0442\u043D\u0451\u0440';
     pluralName: 'partners';
     singularName: 'partner';
   };
@@ -631,21 +728,22 @@ export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
   };
   attributes: {
     abilities: Schema.Attribute.Text;
-    abilities2: Schema.Attribute.Text;
+    anotation: Schema.Attribute.Text & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Blocks;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::partner.partner'
     > &
       Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    name: Schema.Attribute.String;
+    logo: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    shortDescription: Schema.Attribute.Text;
+    shortDescription: Schema.Attribute.Text & Schema.Attribute.Required;
     tarifDescription: Schema.Attribute.String;
     tarifs: Schema.Attribute.Relation<
       'oneToMany',
@@ -661,7 +759,7 @@ export interface ApiPriceCategoryPriceCategory
   extends Struct.CollectionTypeSchema {
   collectionName: 'price_categories';
   info: {
-    displayName: 'price-category';
+    displayName: '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F \u0446\u0435\u043D';
     pluralName: 'price-categories';
     singularName: 'price-category';
   };
@@ -678,8 +776,8 @@ export interface ApiPriceCategoryPriceCategory
       'api::price-category.price-category'
     > &
       Schema.Attribute.Private;
-    longName: Schema.Attribute.String;
-    name: Schema.Attribute.String;
+    longName: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     prices: Schema.Attribute.Relation<'oneToMany', 'api::price.price'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -691,7 +789,7 @@ export interface ApiPriceCategoryPriceCategory
 export interface ApiPricePrice extends Struct.CollectionTypeSchema {
   collectionName: 'prices';
   info: {
-    displayName: 'price';
+    displayName: '\u0426\u0435\u043D\u0430';
     pluralName: 'prices';
     singularName: 'price';
   };
@@ -704,12 +802,15 @@ export interface ApiPricePrice extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
-    isPriceFrom: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    isPriceFrom: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::price.price'> &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     price: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
           min: 0;
@@ -727,7 +828,7 @@ export interface ApiPricePrice extends Struct.CollectionTypeSchema {
 export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   collectionName: 'projects';
   info: {
-    displayName: 'project';
+    displayName: '\u041F\u0440\u043E\u0435\u043A\u0442';
     pluralName: 'projects';
     singularName: 'project';
   };
@@ -738,18 +839,17 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::project.project'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    screenshot: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
+    screenshot: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -759,7 +859,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
 export interface ApiQuickPriceQuickPrice extends Struct.CollectionTypeSchema {
   collectionName: 'quick_prices';
   info: {
-    displayName: 'quick-price';
+    displayName: '\u0411\u044B\u0441\u0442\u0440\u0430\u044F \u0446\u0435\u043D\u0430';
     pluralName: 'quick-prices';
     singularName: 'quick-price';
   };
@@ -770,15 +870,18 @@ export interface ApiQuickPriceQuickPrice extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::quick-price.quick-price'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     price: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
           min: 1;
@@ -796,7 +899,7 @@ export interface ApiRecomendationRecomendation
   extends Struct.CollectionTypeSchema {
   collectionName: 'recomendations';
   info: {
-    displayName: 'recomendation';
+    displayName: '\u0420\u0435\u043A\u043E\u043C\u0435\u043D\u0434\u0430\u0446\u0438\u044F';
     pluralName: 'recomendations';
     singularName: 'recomendation';
   };
@@ -808,6 +911,7 @@ export interface ApiRecomendationRecomendation
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files'>;
     link: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -827,7 +931,7 @@ export interface ApiRecomendationRecomendation
 export interface ApiServiceService extends Struct.CollectionTypeSchema {
   collectionName: 'services';
   info: {
-    displayName: 'service';
+    displayName: '\u0423\u0441\u043B\u0443\u0433\u0430';
     pluralName: 'services';
     singularName: 'service';
   };
@@ -835,19 +939,23 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    annotation: Schema.Attribute.Text;
+    background: Schema.Attribute.Media<'images' | 'files'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    infoBlocks: Schema.Attribute.Component<'service-info.service-info', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::service.service'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    picture: Schema.Attribute.Media<'images' | 'files'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -858,7 +966,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
 export interface ApiSiteInfoSiteInfo extends Struct.SingleTypeSchema {
   collectionName: 'site_infos';
   info: {
-    displayName: 'site-info';
+    displayName: '\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F';
     pluralName: 'site-infos';
     singularName: 'site-info';
   };
@@ -897,7 +1005,7 @@ export interface ApiSiteInfoSiteInfo extends Struct.SingleTypeSchema {
 export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
   collectionName: 'team_members';
   info: {
-    displayName: 'team-member';
+    displayName: '\u0423\u0447\u0430\u0441\u0442\u043D\u0438\u043A \u043A\u043E\u043C\u0430\u043D\u0434\u044B';
     pluralName: 'team-members';
     singularName: 'team-member';
   };
@@ -905,7 +1013,8 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    avatar: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -915,8 +1024,8 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
       'api::team-member.team-member'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    position: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    position: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -928,7 +1037,7 @@ export interface ApiTechStackSectionTechStackSection
   extends Struct.SingleTypeSchema {
   collectionName: 'tech_stack_sections';
   info: {
-    displayName: 'tech-stack-section';
+    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F "\u0422\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u0441\u0442\u0435\u043A"';
     pluralName: 'tech-stack-sections';
     singularName: 'tech-stack-section';
   };
@@ -939,7 +1048,7 @@ export interface ApiTechStackSectionTechStackSection
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images' | 'files'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -948,6 +1057,9 @@ export interface ApiTechStackSectionTechStackSection
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'\u0422\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u0441\u0442\u0435\u043A'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1466,6 +1578,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::application.application': ApiApplicationApplication;
+      'api::author.author': ApiAuthorAuthor;
+      'api::blog-post.blog-post': ApiBlogPostBlogPost;
+      'api::blog-section.blog-section': ApiBlogSectionBlogSection;
       'api::company-section.company-section': ApiCompanySectionCompanySection;
       'api::hero-section.hero-section': ApiHeroSectionHeroSection;
       'api::integration.integration': ApiIntegrationIntegration;

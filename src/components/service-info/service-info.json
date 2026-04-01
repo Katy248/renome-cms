@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_service_info_service_infos",
+  "info": {
+    "displayName": "service-info",
+    "icon": "stack"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "blocks",
+      "required": true
+    },
+    "innerTitle": {
+      "type": "string"
+    },
+    "innerText": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

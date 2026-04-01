@@ -4,7 +4,7 @@
   "info": {
     "singularName": "quick-price",
     "pluralName": "quick-prices",
-    "displayName": "quick-price"
+    "displayName": "Быстрая цена"
   },
   "options": {
     "draftAndPublish": true
@@ -12,13 +12,17 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "price": {
       "type": "decimal",
+      "required": true,
       "min": 1
     }
   }

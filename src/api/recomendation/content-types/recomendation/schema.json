@@ -4,7 +4,7 @@
   "info": {
     "singularName": "recomendation",
     "pluralName": "recomendations",
-    "displayName": "recomendation"
+    "displayName": "Рекомендация"
   },
   "options": {
     "draftAndPublish": true
@@ -12,16 +12,27 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": false
     },
     "text": {
-      "type": "text"
+      "type": "text",
+      "required": false
     },
     "author": {
-      "type": "string"
+      "type": "string",
+      "required": false
     },
     "link": {
       "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
     }
   }
 }

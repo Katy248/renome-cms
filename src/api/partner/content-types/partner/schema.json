@@ -4,7 +4,7 @@
   "info": {
     "singularName": "partner",
     "pluralName": "partners",
-    "displayName": "partner"
+    "displayName": "Партнёр"
   },
   "options": {
     "draftAndPublish": true
@@ -12,23 +12,25 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "shortDescription": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "logo": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "files"
       ]
     },
-    "description": {
-      "type": "text"
+    "anotation": {
+      "type": "text",
+      "required": true
     },
     "tarifs": {
       "type": "relation",
@@ -41,8 +43,8 @@
     "abilities": {
       "type": "text"
     },
-    "abilities2": {
-      "type": "text"
+    "description": {
+      "type": "blocks"
     }
   }
 }

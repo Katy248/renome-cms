@@ -4,7 +4,7 @@
   "info": {
     "singularName": "partner-tarif",
     "pluralName": "partner-tarifs",
-    "displayName": "partner-tarif"
+    "displayName": "Тариф партнёра"
   },
   "options": {
     "draftAndPublish": true
@@ -12,13 +12,15 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
       "type": "text"
     },
     "price": {
       "type": "decimal",
+      "required": true,
       "min": 1
     }
   }
