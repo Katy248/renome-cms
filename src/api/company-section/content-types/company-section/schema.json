@@ -19,6 +19,11 @@
     "description": {
       "type": "text",
       "required": true
+    },
+    "characteristics": {
+      "type": "component",
+      "component": "about-section.characteristic",
+      "repeatable": true
     }
   }
 }

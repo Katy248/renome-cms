@@ -484,10 +484,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
       'api::author.author'
     > &
       Schema.Attribute.Private;
-    publikacziya_v_bloges: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::blog-post.blog-post'
-    >;
+    posts: Schema.Attribute.Relation<'oneToMany', 'api::blog-post.blog-post'>;
     publishedAt: Schema.Attribute.DateTime;
     surname: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -512,7 +509,8 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    image: Schema.Attribute.Media<'images' | 'files'>;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -570,6 +568,10 @@ export interface ApiCompanySectionCompanySection
     draftAndPublish: true;
   };
   attributes: {
+    characteristics: Schema.Attribute.Component<
+      'about-section.characteristic',
+      true
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -649,35 +651,6 @@ export interface ApiIntegrationIntegration extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiLeadLead extends Struct.CollectionTypeSchema {
-  collectionName: 'leads';
-  info: {
-    displayName: 'lead';
-    pluralName: 'leads';
-    singularName: 'lead';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    comment: Schema.Attribute.Text;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::lead.lead'> &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    personalDataConfirmation: Schema.Attribute.Boolean &
-      Schema.Attribute.Required;
-    phone: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiPartnerTarifPartnerTarif
   extends Struct.CollectionTypeSchema {
   collectionName: 'partner_tarifs';
@@ -732,7 +705,7 @@ export interface ApiPartnerPartner extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1049,7 +1022,9 @@ export interface ApiTechStackSectionTechStackSection
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
-    image: Schema.Attribute.Media<'images' | 'files'>;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    leftText: Schema.Attribute.Blocks & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1057,6 +1032,7 @@ export interface ApiTechStackSectionTechStackSection
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    rightText: Schema.Attribute.Blocks & Schema.Attribute.Required;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'\u0422\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u0441\u0442\u0435\u043A'>;
@@ -1584,7 +1560,6 @@ declare module '@strapi/strapi' {
       'api::company-section.company-section': ApiCompanySectionCompanySection;
       'api::hero-section.hero-section': ApiHeroSectionHeroSection;
       'api::integration.integration': ApiIntegrationIntegration;
-      'api::lead.lead': ApiLeadLead;
       'api::partner-tarif.partner-tarif': ApiPartnerTarifPartnerTarif;
       'api::partner.partner': ApiPartnerPartner;
       'api::price-category.price-category': ApiPriceCategoryPriceCategory;

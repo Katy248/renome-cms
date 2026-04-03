@@ -23,10 +23,19 @@
     "image": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files"
       ]
+    },
+    "leftText": {
+      "type": "blocks",
+      "required": true
+    },
+    "rightText": {
+      "type": "blocks",
+      "required": true
     }
   }
 }

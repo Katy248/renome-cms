@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_about_section_characteristics",
+  "info": {
+    "displayName": "characteristic",
+    "icon": "folder"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -44,7 +44,8 @@
       "type": "text"
     },
     "description": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     }
   }
 }

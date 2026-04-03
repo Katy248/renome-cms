@@ -22,6 +22,7 @@
     "image": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files"
@@ -31,7 +32,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::author.author",
-      "inversedBy": "publikacziya_v_bloges"
+      "inversedBy": "posts"
     },
     "url": {
       "type": "string",

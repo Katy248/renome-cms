@@ -27,7 +27,7 @@
         "files"
       ]
     },
-    "publikacziya_v_bloges": {
+    "posts": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::blog-post.blog-post",

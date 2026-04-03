@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AboutSectionCharacteristic extends Struct.ComponentSchema {
+  collectionName: 'components_about_section_characteristics';
+  info: {
+    displayName: 'characteristic';
+    icon: 'folder';
+  };
+  attributes: {
+    text: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface LinksSocialLink extends Struct.ComponentSchema {
   collectionName: 'components_links_social_links';
   info: {
@@ -7,8 +19,11 @@ export interface LinksSocialLink extends Struct.ComponentSchema {
     icon: 'earth';
   };
   attributes: {
-    name: Schema.Attribute.String;
-    url: Schema.Attribute.String;
+    icon: Schema.Attribute.Media<'images' | 'files'>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'none'>;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -29,6 +44,7 @@ export interface ServiceInfoServiceInfo extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'about-section.characteristic': AboutSectionCharacteristic;
       'links.social-link': LinksSocialLink;
       'service-info.service-info': ServiceInfoServiceInfo;
     }
